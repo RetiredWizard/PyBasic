@@ -132,5 +132,5 @@ def main():
             print(e, file=stderr, flush=True)
 
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+main()
