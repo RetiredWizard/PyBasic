@@ -19,8 +19,11 @@ from basictoken import BASICToken as Token
 from flowsignal import FlowSignal
 import math
 import random
-from time import monotonic
-
+from sys import implementation
+if implementation.name.upper() == 'MICROPYTHON':
+    from time import ticks_ms as monotonic
+else:
+	from time import monotonic
 
 """Implements a BASIC array, which may have up
 to three dimensions of fixed size.
@@ -839,7 +842,7 @@ class BASICParser:
             elif not left.endswith('$'):
                 try:
                     numeric = float(right)
-                    if numeric.is_integer():
+                    if int(numeric) == numeric:
                         numeric = int(numeric)
                     self.__symbol_table[left] = numeric
 
@@ -1685,7 +1688,7 @@ class BASICParser:
         elif category == Token.VAL:
             try:
                 numeric = float(value)
-                if numeric.is_integer():
+                if int(numeric) == numeric:
                     return int(numeric)
                 return numeric
 
