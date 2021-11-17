@@ -128,6 +128,7 @@ class BASICParser:
         how to branch if necessary, None otherwise
 
         """
+
         # Remember the line number to aid error reporting
         self.__line_number = line_number
         self.__tokenlist = []
