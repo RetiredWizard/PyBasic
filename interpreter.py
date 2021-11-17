@@ -27,6 +27,10 @@ from basictoken import BASICToken as Token
 from lexer import Lexer
 from program import Program
 from sys import stderr
+try:
+    from pydos_ui import input
+except:
+    pass
 
 
 def main():

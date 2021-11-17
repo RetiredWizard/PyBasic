@@ -24,6 +24,10 @@ if implementation.name.upper() == 'MICROPYTHON':
     from time import ticks_ms as monotonic
 else:
 	from time import monotonic
+try:
+    from pydos_ui import input
+except:
+    pass
 
 """Implements a BASIC array, which may have up
 to three dimensions of fixed size.
@@ -173,8 +177,9 @@ class BASICParser:
 
                 linetokenindex += 1
                 self.__tokenlist = []
-            elif token.category == token.ELSE:
-                # if we find an ELSE we must be in a recursive call and be processing a THEN block
+            elif token.category == token.ELSE and self.__tokenlist[0].category != token.OPEN:
+                # if we find an ELSE and we are not processing an OPEN statement, we must
+                # be in a recursive call and be processing a THEN block
                 # since we're processing the THEN block we are done if we hit an ELSE
                 break
             else:

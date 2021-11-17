@@ -25,6 +25,10 @@ from basictoken import BASICToken as Token
 from basicparser import BASICParser
 from flowsignal import FlowSignal
 from lexer import Lexer
+try:
+    from pydos_ui import input
+except:
+    pass
 
 
 class BASICData:
