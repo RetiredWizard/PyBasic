@@ -25,6 +25,7 @@ from basictoken import BASICToken as Token, BASICToken
 from basicparser import BASICParser
 from flowsignal import FlowSignal
 from lexer import Lexer
+import os
 
 
 class BASICData:
@@ -253,6 +254,11 @@ class Program:
 
         except OSError:
             raise OSError("Could not read file")
+
+        if file.rfind('/') == 0:
+            os.chdir("/")
+        elif file.rfind('/') != -1:
+            os.chdir(file[:file.rfind('/')])
 
     def add_stmt(self, tokenlist):
         """

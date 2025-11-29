@@ -27,6 +27,7 @@ from basictoken import BASICToken as Token
 from lexer import Lexer
 from program import Program
 from sys import stderr
+from traceback import print_exception
 
 
 def main():
@@ -167,8 +168,8 @@ def main():
         # Trap all exceptions so that interpreter
         # keeps running
         except Exception as e:
-            print(e, file=stderr, flush=True)
-
+            print_exception(e,e, \
+                e.__traceback__ if hasattr(e,'__traceback__') else None)
 
 if __name__ == "__main__":
     main()
