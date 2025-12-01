@@ -123,4 +123,6 @@ class FlowSignal:
 
         self.ftype = ftype
         self.ftarget = ftarget
+
         self.floop_var = floop_var
+
